@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
 import 'dart:async';
 
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:tpay_flutter/tpay_flutter.dart';
 
@@ -53,9 +53,29 @@ class _MyAppState extends State<MyApp> {
           child: Column(
             children: [
               Text('Running on: $_platformVersion\n'),
-              MaterialButton(child: Text("Open payment",), onPressed: () {
-                TpayFlutter.requestPayment;
-              },)
+              Builder(builder: (context) {
+                return MaterialButton(
+                  child: Text(
+                    "Open payment",
+                  ),
+                  onPressed: () async {
+                    final result = await TpayFlutter.requestPayment(
+                        id: '1010',
+                        amount: '313.40',
+                        crc: 'CRC',
+                        securityCode: 'demo',
+                        description: 'Zakupy',
+                        clientEmail: 'Email@email.com',
+                        clientName: 'Marcel');
+
+                    Scaffold.of(context).showSnackBar(SnackBar(
+                      content: Text(result == TpayResult.success
+                          ? 'Płatność przebiegła pomyślnie'
+                          : "Nie udało się zrealizować zamówienia"),
+                    ));
+                  },
+                );
+              })
             ],
           ),
         ),

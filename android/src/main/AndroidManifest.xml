@@ -4,7 +4,6 @@
 
     <application
         android:theme="@style/Theme.AppCompat">
-        <activity android:name=".TpayPaymentActivity" />
     </application>
 
 </manifest>
