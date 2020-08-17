@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="YBp-rM-Wm9">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Payment View Controller-->
+        <scene sceneID="ZrE-Gj-uqL">
+            <objects>
+                <viewController restorationIdentifier="paymentVC" storyboardIdentifier="paymentVC" modalPresentationStyle="overCurrentContext" id="YBp-rM-Wm9" customClass="PaymentViewController" customModule="tpay_flutter" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="wRb-ch-DsK">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="3fp-M9-TNN"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="0sv-Kv-B6H"/>
+                    <connections>
+                        <segue destination="yjS-8c-kcC" kind="show" identifier="TpayPaymentInnerSegue" id="fLt-gR-dd8"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IPV-AK-vCq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-375" y="184"/>
+        </scene>
+        <!--Tpay View Controller-->
+        <scene sceneID="6mk-q9-Act">
+            <objects>
+                <viewController modalPresentationStyle="fullScreen" id="yjS-8c-kcC" customClass="TpayViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="YOn-5K-bOT">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="uUx-A3-5W4"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="b1D-7R-eZo"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Y2p-lM-cRN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="481" y="183"/>
+        </scene>
+    </scenes>
+</document>
