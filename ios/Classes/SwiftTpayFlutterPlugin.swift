@@ -14,20 +14,20 @@ public class SwiftTpayFlutterPlugin: NSObject, FlutterPlugin, TpayPaymentDelegat
     }
     
     public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
-        if call.method == "getPlatformVersion" {
-            result("iOS " + UIDevice.current.systemVersion)
-        } else if call.method == "requestPayment" {
+        if call.method == "requestPayment" {
             
             tpayResult = result
             
             let payment = TpayPayment()
-            payment.mId = "1010"
-            payment.mAmount = "123.20"
-            payment.mDescription = "Zakupy iOS"
-            payment.mClientEmail = "email@kleint.pl"
-            payment.mClientName = "Marcel"
-            payment.mCrc = "CRC"
-            payment.mSecurityCode = "demo"
+            let arguments = call.arguments as! [String: String]
+            
+            payment.mId = arguments["id"]
+            payment.mAmount = arguments["amount"]
+            payment.mDescription = arguments["description"]
+            payment.mClientEmail = arguments["clientEmail"]
+            payment.mClientName = arguments["clientName"]
+            payment.mCrc = arguments["crc"]
+            payment.mSecurityCode = arguments["securityCode"]
             
             let paymentController = UIStoryboard(name: "PaymentStoryboard", bundle: Bundle(identifier: "org.cocoapods.tpay-flutter")).instantiateViewController(withIdentifier: "paymentVC") as! PaymentViewController
             

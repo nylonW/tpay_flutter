@@ -7,11 +7,6 @@ enum TpayResult { success, failure }
 class TpayFlutter {
   static const MethodChannel _channel = const MethodChannel('tpay_flutter');
 
-  static Future<String> get platformVersion async {
-    final String version = await _channel.invokeMethod('getPlatformVersion');
-    return version;
-  }
-
   static Future<TpayResult> requestPayment({String id,
     String amount,
     String crc,

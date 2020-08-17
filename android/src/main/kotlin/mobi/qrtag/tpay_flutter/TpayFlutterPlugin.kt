@@ -51,9 +51,6 @@ class TpayFlutterPlugin : FlutterPlugin, MethodCallHandler, ActivityAware, Plugi
 
     override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
         when (call.method) {
-            "getPlatformVersion" -> {
-                result.success("Android ${android.os.Build.VERSION.RELEASE}")
-            }
             "requestPayment" -> {
                 tpayResult = result
                 activity?.let { requestPaymentActivity(it, call) }

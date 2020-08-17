@@ -27,7 +27,7 @@ class _MyAppState extends State<MyApp> {
     String platformVersion;
     // Platform messages may fail, so we use a try/catch PlatformException.
     try {
-      platformVersion = await TpayFlutter.platformVersion;
+      platformVersion = 'version';
     } on PlatformException {
       platformVersion = 'Failed to get platform version.';
     }
@@ -65,7 +65,7 @@ class _MyAppState extends State<MyApp> {
                         crc: 'CRC',
                         securityCode: 'demo',
                         description: 'Zakupy',
-                        clientEmail: 'Email@email.com',
+                        clientEmail: 'email@email.com',
                         clientName: 'Marcel');
 
                     Scaffold.of(context).showSnackBar(SnackBar(
