@@ -29,7 +29,7 @@ public class SwiftTpayFlutterPlugin: NSObject, FlutterPlugin, TpayPaymentDelegat
             payment.mCrc = arguments["crc"]
             payment.mSecurityCode = arguments["securityCode"]
             
-            let paymentController = UIStoryboard(name: "PaymentStoryboard", bundle: Bundle(identifier: "org.cocoapods.tpay-flutter")).instantiateViewController(withIdentifier: "paymentVC") as! PaymentViewController
+            let paymentController = UIStoryboard(name: "PaymentStoryboard", bundle: Bundle(for: SwiftTpayFlutterPlugin.self)).instantiateViewController(withIdentifier: "paymentVC") as! PaymentViewController
             
             paymentController.payment = payment
             paymentController.delegate = self
