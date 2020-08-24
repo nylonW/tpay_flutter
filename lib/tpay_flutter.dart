@@ -7,13 +7,16 @@ enum TpayResult { success, failure }
 class TpayFlutter {
   static const MethodChannel _channel = const MethodChannel('tpay_flutter');
 
-  static Future<TpayResult> requestPayment({String id,
-    String amount,
-    String crc,
-    String securityCode,
-    String description,
-    String clientEmail,
-    String clientName}) async {
+  static Future<TpayResult> requestPayment(
+      {String id,
+      String amount,
+      String crc,
+      String securityCode,
+      String description,
+      String clientEmail,
+      String clientName,
+      String returnErrorUrl,
+      String returnUrl}) async {
     final int result = await _channel.invokeMethod('requestPayment', {
       "id": id,
       "amount": amount,
@@ -21,7 +24,9 @@ class TpayFlutter {
       'securityCode': securityCode,
       'description': description,
       'clientEmail': clientEmail,
-      'clientName': clientName
+      'clientName': clientName,
+      'returnErrorUrl': returnErrorUrl,
+      'returnUrl': returnUrl
     });
 
     if (result == 0) {

@@ -2,6 +2,7 @@ package mobi.qrtag.tpay_flutter
 
 import android.app.Activity
 import android.content.Intent
+import android.util.Log
 import androidx.annotation.NonNull
 import com.tpay.android.library.web.TpayActivity
 import com.tpay.android.library.web.TpayPayment
@@ -87,9 +88,11 @@ class TpayFlutterPlugin : FlutterPlugin, MethodCallHandler, ActivityAware, Plugi
                 .setSecurityCode(call.argument("securityCode"))
                 .setDescription(call.argument("description"))
                 .setClientEmail(call.argument("clientEmail"))
+                .setReturnErrorUrl("returnErrorUrl")
+                .setReturnUrl("returnUrl")
                 .setClientName(call.argument("clientName"))
 
-        val payIntent = Intent(activity, TpayActivity::class.java)
+        val payIntent = Intent(activity, CustomTpayActivity::class.java)
         val tpayPayment = paymentBuilder?.create()
         payIntent.putExtra(TpayActivity.EXTRA_TPAY_PAYMENT, tpayPayment)
 
@@ -97,15 +100,24 @@ class TpayFlutterPlugin : FlutterPlugin, MethodCallHandler, ActivityAware, Plugi
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?): Boolean {
+        Log.d("code", "$resultCode, $requestCode")
         return when (requestCode) {
             TpayActivity.TPAY_PAYMENT_REQUEST ->
                 if (resultCode == Activity.RESULT_OK) {
-                    tpayResult?.success(1);
+                    tpayResult?.success(1)
                     true
                 } else {
                     tpayResult?.success(0)
                     true
                 }
+            TpayActivity.TPAY_BACK_PRESSED_RESULT -> {
+                tpayResult?.success(0)
+                true
+            }
+            TpayActivity.TPAY_SESSION_CLOSED_RESULT -> {
+                tpayResult?.success(0)
+                true
+            }
             else ->
                 false
         }
