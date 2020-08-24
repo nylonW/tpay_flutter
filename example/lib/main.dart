@@ -66,6 +66,8 @@ class _MyAppState extends State<MyApp> {
                         securityCode: 'demo',
                         description: 'Zakupy',
                         clientEmail: 'email@email.com',
+                        returnErrorUrl: "https://tpay.com/",
+                        returnUrl: "https://tpay.com/",
                         clientName: 'Marcel');
 
                     Scaffold.of(context).showSnackBar(SnackBar(

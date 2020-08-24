@@ -5,6 +5,9 @@ import 'package:flutter/services.dart';
 enum TpayResult { success, failure }
 
 class TpayFlutter {
+
+  static const String RETURN_TO_APP = 'https://tpay.com/';
+
   static const MethodChannel _channel = const MethodChannel('tpay_flutter');
 
   static Future<TpayResult> requestPayment(
