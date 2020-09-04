@@ -95,6 +95,7 @@ class TpayFlutterPlugin : FlutterPlugin, MethodCallHandler, ActivityAware, Plugi
         val payIntent = Intent(activity, CustomTpayActivity::class.java)
         val tpayPayment = paymentBuilder?.create()
         payIntent.putExtra(TpayActivity.EXTRA_TPAY_PAYMENT, tpayPayment)
+        payIntent.putExtra(TpayActivity.TPAY_PAYMENT_SUCCESS_URL, paymentBuilder.returnUrl)
 
         activity.startActivityForResult(payIntent, TpayActivity.TPAY_PAYMENT_REQUEST)
     }
