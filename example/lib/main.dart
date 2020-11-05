@@ -67,7 +67,7 @@ class _MyAppState extends State<MyApp> {
                         description: 'Zakupy',
                         clientEmail: 'email@email.com',
                         returnErrorUrl: "https://tpay.com/",
-                        returnUrl: "https://qrtag.pl/",
+                        returnUrl: "about:blank",
                         clientName: 'Marcel');
 
                     Scaffold.of(context).showSnackBar(SnackBar(

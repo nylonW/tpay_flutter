@@ -82,15 +82,15 @@ class TpayFlutterPlugin : FlutterPlugin, MethodCallHandler, ActivityAware, Plugi
     }
 
     private fun requestPaymentActivity(activity: Activity, call: MethodCall) {
-       val paymentBuilder = TpayPayment.Builder().setId(call.argument("id"))
+        val paymentBuilder = TpayPayment.Builder().setId(call.argument("id"))
                 .setAmount(call.argument("amount"))
                 .setCrc(call.argument("crc"))
                 .setSecurityCode(call.argument("securityCode"))
                 .setDescription(call.argument("description"))
                 .setClientEmail(call.argument("clientEmail"))
+                .setClientName(call.argument("clientName"))
                 .setReturnErrorUrl(call.argument("returnErrorUrl"))
                 .setReturnUrl(call.argument("returnUrl"))
-                .setClientName(call.argument("clientName"))
 
         val payIntent = Intent(activity, CustomTpayActivity::class.java)
         val tpayPayment = paymentBuilder?.create()

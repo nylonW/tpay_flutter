@@ -23,11 +23,13 @@ public class SwiftTpayFlutterPlugin: NSObject, FlutterPlugin, TpayPaymentDelegat
             
             payment.mId = arguments["id"]
             payment.mAmount = arguments["amount"]
+            payment.mCrc = arguments["crc"]
+            payment.mSecurityCode = arguments["securityCode"]
             payment.mDescription = arguments["description"]
             payment.mClientEmail = arguments["clientEmail"]
             payment.mClientName = arguments["clientName"]
-            payment.mCrc = arguments["crc"]
-            payment.mSecurityCode = arguments["securityCode"]
+            payment.mReturnErrorUrl = arguments["returnErrorUrl"]
+            payment.mReturnUrl = arguments["returnUrl"]
             
             let paymentController = UIStoryboard(name: "PaymentStoryboard", bundle: Bundle(for: SwiftTpayFlutterPlugin.self)).instantiateViewController(withIdentifier: "paymentVC") as! PaymentViewController
             
