@@ -12,7 +12,6 @@ import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler
-import io.flutter.plugin.common.MethodChannel.Result
 import io.flutter.plugin.common.PluginRegistry
 import io.flutter.plugin.common.PluginRegistry.Registrar
 
@@ -91,6 +90,7 @@ class TpayFlutterPlugin : FlutterPlugin, MethodCallHandler, ActivityAware, Plugi
                 .setClientName(call.argument("clientName"))
                 .setReturnErrorUrl(call.argument("returnErrorUrl"))
                 .setReturnUrl(call.argument("returnUrl"))
+                .setMd5Code(call.argument("md5sum"))
 
         val payIntent = Intent(activity, CustomTpayActivity::class.java)
         val tpayPayment = paymentBuilder?.create()
@@ -105,18 +105,18 @@ class TpayFlutterPlugin : FlutterPlugin, MethodCallHandler, ActivityAware, Plugi
         return when (requestCode) {
             TpayActivity.TPAY_PAYMENT_REQUEST ->
                 if (resultCode == Activity.RESULT_OK) {
-                    tpayResult?.success(1)
+                    tpayResult.success(1)
                     true
                 } else {
-                    tpayResult?.success(0)
+                    tpayResult.success(0)
                     true
                 }
             TpayActivity.TPAY_BACK_PRESSED_RESULT -> {
-                tpayResult?.success(0)
+                tpayResult.success(0)
                 true
             }
             TpayActivity.TPAY_SESSION_CLOSED_RESULT -> {
-                tpayResult?.success(0)
+                tpayResult.success(0)
                 true
             }
             else ->

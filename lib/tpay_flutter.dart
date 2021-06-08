@@ -1,11 +1,11 @@
 import 'dart:async';
-
+import 'dart:convert';
+import 'package:crypto/crypto.dart';
 import 'package:flutter/services.dart';
 
 enum TpayResult { success, failure }
 
 class TpayFlutter {
-
   static const String RETURN_TO_APP = 'https://tpay.com/';
 
   static const MethodChannel _channel = const MethodChannel('tpay_flutter');
@@ -29,7 +29,9 @@ class TpayFlutter {
       'clientEmail': clientEmail,
       'clientName': clientName,
       'returnErrorUrl': returnErrorUrl,
-      'returnUrl': returnUrl
+      'returnUrl': returnUrl,
+      'md5sum':
+          md5.convert(utf8.encode('$id&$amount&$crc&$securityCode')).toString(),
     });
 
     if (result == 0) {
