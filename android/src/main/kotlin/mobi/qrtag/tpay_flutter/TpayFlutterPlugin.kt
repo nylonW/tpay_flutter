@@ -23,7 +23,7 @@ class TpayFlutterPlugin : FlutterPlugin, MethodCallHandler, ActivityAware, Plugi
     /// when the Flutter Engine is detached from the Activity
     private lateinit var channel: MethodChannel
     private var activity: Activity? = null
-    private var tpayResult: Result? = null
+    private var tpayResult: MethodChannel.Result? = null
 
     override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
         channel = MethodChannel(flutterPluginBinding.binaryMessenger, "tpay_flutter")
@@ -49,7 +49,7 @@ class TpayFlutterPlugin : FlutterPlugin, MethodCallHandler, ActivityAware, Plugi
         }
     }
 
-    override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
+    override fun onMethodCall(call: MethodCall, result: MethodChannel.Result) {
         when (call.method) {
             "requestPayment" -> {
                 tpayResult = result
@@ -105,18 +105,18 @@ class TpayFlutterPlugin : FlutterPlugin, MethodCallHandler, ActivityAware, Plugi
         return when (requestCode) {
             TpayActivity.TPAY_PAYMENT_REQUEST ->
                 if (resultCode == Activity.RESULT_OK) {
-                    tpayResult.success(1)
+                    tpayResult?.success(1)
                     true
                 } else {
-                    tpayResult.success(0)
+                    tpayResult?.success(0)
                     true
                 }
             TpayActivity.TPAY_BACK_PRESSED_RESULT -> {
-                tpayResult.success(0)
+                tpayResult?.success(0)
                 true
             }
             TpayActivity.TPAY_SESSION_CLOSED_RESULT -> {
-                tpayResult.success(0)
+                tpayResult?.success(0)
                 true
             }
             else ->
