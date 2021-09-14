@@ -11,15 +11,15 @@ class TpayFlutter {
   static const MethodChannel _channel = const MethodChannel('tpay_flutter');
 
   static Future<TpayResult> requestPayment(
-      {String id,
-      String amount,
-      String crc,
-      String securityCode,
-      String description,
-      String clientEmail,
-      String clientName,
-      String returnErrorUrl,
-      String returnUrl}) async {
+      {required String id,
+      required String amount,
+      required String crc,
+      required String securityCode,
+      required String description,
+      required String clientEmail,
+      required String clientName,
+      required String returnErrorUrl,
+      required String returnUrl}) async {
     final int result = await _channel.invokeMethod('requestPayment', {
       "id": id,
       "amount": amount,

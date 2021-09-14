@@ -70,7 +70,7 @@ class _MyAppState extends State<MyApp> {
                         returnUrl: "about:blank",
                         clientName: 'Marcel');
 
-                    Scaffold.of(context).showSnackBar(SnackBar(
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                       content: Text(result == TpayResult.success
                           ? 'Płatność przebiegła pomyślnie'
                           : "Nie udało się zrealizować zamówienia"),
