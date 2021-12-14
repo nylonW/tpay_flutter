@@ -1,15 +1,15 @@
 name: tpay_flutter
 description: Unofficial Tpay Flutter plugin
 version: 0.0.3
-homepage:
+homepage: null
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
+  crypto: ^3.0.1
   flutter:
     sdk: flutter
-  crypto: ^3.0.1
 
 dev_dependencies:
   flutter_test:
@@ -17,7 +17,6 @@ dev_dependencies:
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
-
 # The following section is specific to Flutter.
 flutter:
   # This section identifies this Flutter project as a plugin project.
@@ -31,7 +30,6 @@ flutter:
         pluginClass: TpayFlutterPlugin
       ios:
         pluginClass: TpayFlutterPlugin
-
   # To add assets to your plugin package, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg
@@ -42,7 +40,6 @@ flutter:
   #
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
-
   # To add custom fonts to your plugin package, add a fonts section here,
   # in this "flutter" section. Each entry in this list should have a
   # "family" key with the font family name, and a "fonts" key with a
