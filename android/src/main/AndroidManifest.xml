@@ -5,7 +5,10 @@
 
     <application
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".CustomTpayActivity"/>
+        <activity
+            android:name=".CustomTpayActivity"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|keyboardHidden"/>
     </application>
 
 </manifest>
