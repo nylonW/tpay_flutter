@@ -18,8 +18,8 @@ class TpayFlutter {
       required String description,
       required String clientEmail,
       required String clientName,
-      required String returnErrorUrl,
-      required String returnUrl}) async {
+      String? returnErrorUrl,
+      String? returnUrl}) async {
     final int result = await _channel.invokeMethod('requestPayment', {
       "id": id,
       "amount": amount,
@@ -34,10 +34,11 @@ class TpayFlutter {
           md5.convert(utf8.encode('$id&$amount&$crc&$securityCode')).toString(),
     });
 
-    if (result == 0) {
-      return TpayResult.failure;
-    } else {
+    print(result);
+    if (result == 1) {
       return TpayResult.success;
+    } else {
+      return TpayResult.failure;
     }
   }
 }

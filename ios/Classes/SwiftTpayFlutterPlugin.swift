@@ -19,18 +19,18 @@ public class SwiftTpayFlutterPlugin: NSObject, FlutterPlugin, TpayPaymentDelegat
             tpayResult = result
             
             let payment = TpayPayment()
-            let arguments = call.arguments as! [String: String]
+            guard let arguments = call.arguments as? [String: String?] else { return }
             
-            payment.mId = arguments["id"]
-            payment.mAmount = arguments["amount"]
-            payment.mCrc = arguments["crc"]
-            payment.mSecurityCode = arguments["securityCode"]
-            payment.mDescription = arguments["description"]
-            payment.mClientEmail = arguments["clientEmail"]
-            payment.mClientName = arguments["clientName"]
-            payment.mReturnErrorUrl = arguments["returnErrorUrl"]
-            payment.mReturnUrl = arguments["returnUrl"]
-            payment.md5 = arguments["md5sum"]
+            payment.mId = arguments["id"] ?? nil
+            payment.mAmount = arguments["amount"] ?? nil
+            payment.mCrc = arguments["crc"] ?? nil
+            payment.mSecurityCode = arguments["securityCode"] ?? nil
+            payment.mDescription = arguments["description"] ?? nil
+            payment.mClientEmail = arguments["clientEmail"] ?? nil
+            payment.mClientName = arguments["clientName"] ?? nil
+            payment.mReturnErrorUrl = arguments["returnErrorUrl"] ?? nil
+            payment.mReturnUrl = arguments["returnUrl"] ?? nil
+            payment.md5 = arguments["md5sum"] ?? nil
             
             let paymentController = UIStoryboard(name: "PaymentStoryboard", bundle: Bundle(for: SwiftTpayFlutterPlugin.self)).instantiateViewController(withIdentifier: "paymentVC") as! PaymentViewController
             
@@ -55,6 +55,7 @@ public class SwiftTpayFlutterPlugin: NSObject, FlutterPlugin, TpayPaymentDelegat
     
     public func tpayDidSucceed(with payment: TpayPayment!) {
         print("Succeed")
+        print(payment)
         
         if (UIApplication.topViewController() is TpayViewController) {
             UIApplication.topViewController()?.dismiss(animated: true, completion: {
@@ -65,6 +66,7 @@ public class SwiftTpayFlutterPlugin: NSObject, FlutterPlugin, TpayPaymentDelegat
         }
         
         guard let result = tpayResult else { return }
+        print(result)
         result(1)
     }
     
