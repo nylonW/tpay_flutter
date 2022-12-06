@@ -89,7 +89,7 @@ class TpayFlutterPlugin : FlutterPlugin, MethodCallHandler, ActivityAware, Plugi
                 .setClientEmail(call.argument("clientEmail"))
                 .setClientName(call.argument("clientName"))
                 .setReturnErrorUrl(call.argument("returnErrorUrl"))
-                .setReturnUrl(call.argument("returnUrl"))
+                .setReturnUrl("about:blank")
                 .setMd5Code(call.argument("md5sum"))
 
         val payIntent = Intent(activity, CustomTpayActivity::class.java)
